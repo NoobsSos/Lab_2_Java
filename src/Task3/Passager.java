@@ -1,0 +1,57 @@
+package Task3;
+
+import java.util.UUID;
+
+public class Passager {
+
+
+
+    private UUID passengerId;
+    private String name;
+    private String surname;
+    private int age;
+
+    public Passager(String name, String surname, int age) {
+        if (age <= 0) {
+            throw new IllegalArgumentException("Age must be positive");
+        }
+        this.name = name;
+        this.surname = surname;
+        this.age = age;
+    }
+
+    public String getName() {
+        return this.name;
+    }
+
+    public String getSurname() {
+        return this.surname;
+    }
+
+    public int getAge() {
+        return this.age;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setSurname(String surname) {
+        this.surname = surname;
+    }
+
+    public void setAge(int age) {
+        if (age <= 0) {
+            throw new IllegalArgumentException("Age must be positive");
+        }
+        this.age = age;
+    }
+
+    public UUID getPassengerId() {
+        return passengerId;
+    }
+
+    public void setPassengerId(UUID passengerId) {
+        this.passengerId = passengerId;
+    }
+}

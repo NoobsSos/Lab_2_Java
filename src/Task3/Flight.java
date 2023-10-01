@@ -17,13 +17,12 @@ public class Flight {
     public final List<Passager> passengers;
 
 
-    public Flight(String id, Airport departureAirport, Airport arrivalAirport, Calendar departureTime, Calendar arrivalTime, int flightTime, int ticketPrice, List<Ticket> tickets, List<Passager> passengers) {
+    public Flight(String id, Airport departureAirport, Airport arrivalAirport, Calendar departureTime, Calendar arrivalTime, int ticketPrice, List<Ticket> tickets, List<Passager> passengers) {
         this.id = id;
         this.departureAirport = departureAirport;
         this.arrivalAirport = arrivalAirport;
         this.departureTime = departureTime;
         this.arrivalTime = arrivalTime;
-        this.flightTime = flightTime;
         this.ticketPrice = ticketPrice;
         this.tickets = new ArrayList<>();
         this.passengers = new ArrayList<>();
@@ -89,6 +88,9 @@ public class Flight {
         plane.setNumberOfPassengers(capacity);
     }
 
+    public void addTicket(Ticket ticket) {
+        tickets.add(ticket);
+    }
     public void cancelTicket(int number) {
         UUID passengerId = tickets.get(number).getPassengerId();
         passengers.removeIf(p -> p.getPassengerId() == passengerId);

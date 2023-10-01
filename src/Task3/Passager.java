@@ -1,11 +1,10 @@
 package Task3;
 
+import java.util.List;
 import java.util.UUID;
 
 public class Passager {
-
-
-
+    public final List<Ticket> tickets;
     private UUID passengerId;
     private String name;
     private String surname;
@@ -18,6 +17,7 @@ public class Passager {
         this.name = name;
         this.surname = surname;
         this.age = age;
+        tickets = null;
     }
 
     public String getName() {
@@ -53,5 +53,10 @@ public class Passager {
 
     public void setPassengerId(UUID passengerId) {
         this.passengerId = passengerId;
+    }
+
+    public void addTicket(Ticket ticket) {
+        assert tickets != null;
+        tickets.add(ticket);
     }
 }

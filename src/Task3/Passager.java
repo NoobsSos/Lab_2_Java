@@ -12,8 +12,9 @@ public class Passager {
 
     public Passager(String name, String surname, int age) {
         if (age <= 0) {
-            throw new IllegalArgumentException("Age must be positive");
+            throw new IllegalArgumentException("Age must be greater than 0");
         }
+        this.passengerId = UUID.randomUUID();
         this.name = name;
         this.surname = surname;
         this.age = age;
@@ -42,7 +43,7 @@ public class Passager {
 
     public void setAge(int age) {
         if (age <= 0) {
-            throw new IllegalArgumentException("Age must be positive");
+            throw new IllegalArgumentException("Age must be greater than 0");
         }
         this.age = age;
     }

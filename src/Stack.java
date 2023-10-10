@@ -72,10 +72,4 @@ public class Stack<Type> implements Iterable<Type> {
             }
         };
     }
-
-    public void forEach(Consumer<? super Type> action) {
-        for (Type item : this) {
-            action.accept(item);
-        }
-    }
 }

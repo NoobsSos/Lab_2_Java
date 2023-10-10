@@ -1,7 +1,6 @@
 package Task3;
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.List;
+
+import java.time.LocalDateTime;
 import java.util.UUID;
 
 public class Flight {
@@ -9,23 +8,20 @@ public class Flight {
     private Plane plane;
     private Airport departureAirport;
     private Airport arrivalAirport;
-    private Calendar departureTime;
-    private Calendar arrivalTime;
+    private LocalDateTime departureTime;
+    private LocalDateTime arrivalTime;
     private int flightTime;
     private int ticketPrice;
-    public final List<Ticket> tickets;
-    public final List<Passager> passengers;
 
 
-    public Flight(String id, Airport departureAirport, Airport arrivalAirport, Calendar departureTime, Calendar arrivalTime, int ticketPrice, List<Ticket> tickets, List<Passager> passengers) {
+    public Flight(String id, Airport departureAirport, Airport arrivalAirport, LocalDateTime departureTime, LocalDateTime arrivalTime, int ticketPrice, Plane plane) {
         this.id = id;
         this.departureAirport = departureAirport;
         this.arrivalAirport = arrivalAirport;
         this.departureTime = departureTime;
         this.arrivalTime = arrivalTime;
         this.ticketPrice = ticketPrice;
-        this.tickets = new ArrayList<>();
-        this.passengers = new ArrayList<>();
+        this.plane = plane;
     }
 
     public String getId() {
@@ -40,11 +36,11 @@ public class Flight {
         return arrivalAirport;
     }
 
-    public Calendar getDepartureTime() {
+    public LocalDateTime getDepartureTime() {
         return departureTime;
     }
 
-    public Calendar getArrivalTime() {
+    public LocalDateTime getArrivalTime() {
         return arrivalTime;
     }
 
@@ -54,6 +50,10 @@ public class Flight {
 
     public int getTicketPrice() {
         return ticketPrice;
+    }
+
+    public int getTotalTicketPrice() {
+        return ticketPrice * this.plane.tickets.size();
     }
 
     public void setId(String id) {
@@ -68,11 +68,11 @@ public class Flight {
         this.arrivalAirport = arrivalAirport;
     }
 
-    public void setDepartureTime(Calendar departureTime) {
+    public void setDepartureTime(LocalDateTime departureTime) {
         this.departureTime = departureTime;
     }
 
-    public void setArrivalTime(Calendar arrivalTime) {
+    public void setArrivalTime(LocalDateTime arrivalTime) {
         this.arrivalTime = arrivalTime;
     }
 
@@ -83,17 +83,34 @@ public class Flight {
     public void setTicketPrice(int ticketPrice) {
         this.ticketPrice = ticketPrice;
     }
+
     public void editPlane(String model, int capacity) {
         plane.setModel(model);
         plane.setNumberOfPassengers(capacity);
     }
 
     public void addTicket(Ticket ticket) {
-        tickets.add(ticket);
-    }
-    public void cancelTicket(int number) {
-        UUID passengerId = tickets.get(number).getPassengerId();
-        passengers.removeIf(p -> p.getPassengerId() == passengerId);
+        if (ticket.flight != this) {
+            System.out.println("Wrong flight, you should choose " + ticket.flight.id + " flight, but not " + this.getId() + " flight");
+            return;
+        }
+
+        if (this.plane.tickets.size() < this.plane.getNumberOfPassengers()) {
+            this.plane.tickets.add(ticket);
+        } else {
+            System.out.println("No free seats");
+        }
     }
 
+    public void cancelTicket(UUID passengerId) {
+        this.plane.tickets.removeIf(p -> p.getPassengerId() == passengerId);
+    }
+
+    public void removePlane() {
+        this.plane = null;
+    }
+
+    public void changePlane(Plane plane) {
+        this.plane = plane;
+    }
 }

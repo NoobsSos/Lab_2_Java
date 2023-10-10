@@ -5,7 +5,6 @@ import java.util.List;
 
 public class Airport {
     private String id;
-    List<Plane> planeList = new ArrayList<>();
 
     public Airport(String id) {
         this.id = id;
@@ -17,9 +16,5 @@ public class Airport {
 
     public void setId(String id) {
         this.id = id;
-    }
-
-    public void addPlane(Plane plane) {
-        planeList.add(plane);
     }
 }

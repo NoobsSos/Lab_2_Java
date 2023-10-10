@@ -4,18 +4,14 @@ import java.util.UUID;
 
 public class Ticket {
     private UUID passengerId;
-
-    public Ticket(UUID passengerId) {
+    Flight flight;
+    public Ticket(UUID passengerId, Flight flight) {
         this.passengerId = passengerId;
+        this.flight = flight;
     }
 
     public UUID getPassengerId() {
         return passengerId;
     }
 
-    public Ticket addTicket(Ticket ticket, Passager passager, Flight flight) {
-        passager.addTicket(ticket);
-        flight.addTicket(ticket);
-        return ticket;
-    }
 }

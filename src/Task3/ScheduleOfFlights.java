@@ -1,5 +1,6 @@
 package Task3;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
@@ -11,13 +12,20 @@ public class ScheduleOfFlights {
         flightList.add(flight);
     }
 
-    public void profitPerDateFromTo(Airport airport, Calendar dateFrom, Calendar dateTo) {
+    public void printSchedule() {
+        for (Flight flight : this.flightList) {
+            System.out.println("Flight " + flight.getId() + " from " + flight.getDepartureAirport().getId() + " to " + flight.getArrivalAirport().getId() + " at " + flight.getDepartureTime() + " with " + flight.getTicketPrice() + " price");
+        }
+    }
+
+    public void profitPerDateFromTo(LocalDateTime dateFrom, LocalDateTime dateTo) {
         int profit = 0;
-        for (Flight flight : flightList) {
-            if (flight.getDepartureAirport().equals(airport) && flight.getDepartureTime().after(dateFrom) && flight.getDepartureTime().before(dateTo)) {
-                profit += flight.getTicketPrice();
+        for (Flight flight : this.flightList) {
+            LocalDateTime departureTime = flight.getDepartureTime();
+            if (departureTime.isAfter(dateFrom) && departureTime.isBefore(dateTo)) {
+                profit += flight.getTotalTicketPrice();
             }
         }
-        System.out.println("Profit per date from " + dateFrom.getTime() + " to " + dateTo.getTime() + " is " + profit);
+        System.out.println("Profit per date from " + dateFrom + " to " + dateTo + " is " + profit);
     }
 }

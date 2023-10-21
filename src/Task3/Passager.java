@@ -1,5 +1,6 @@
 package Task3;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
@@ -18,7 +19,7 @@ public class Passager {
         this.name = name;
         this.surname = surname;
         this.age = age;
-        tickets = null;
+        tickets = new ArrayList<>();
     }
 
     public String getName() {
@@ -56,8 +57,4 @@ public class Passager {
         this.passengerId = passengerId;
     }
 
-    public void addTicket(Ticket ticket) {
-        assert tickets != null;
-        tickets.add(ticket);
-    }
 }

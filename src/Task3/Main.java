@@ -4,9 +4,20 @@ import java.time.LocalDateTime;
 
 public class Main {
     public static void main(String[] args) {
+        // Create owner of airport
+        OwnerOfAirport ownerOfAirport = new OwnerOfAirport("1");
+
         // Create airport
         Airport airport = new Airport("Lviv");
         Airport airport1 = new Airport("Kyiv");
+
+        // Add airport to owner
+        ownerOfAirport.addAirport(airport);
+        ownerOfAirport.addAirport(airport1);
+
+        // Delete airport from owner
+        ownerOfAirport.deleteAirport(airport1);
+
 
         // Create plane
         Plane plane = new Plane("Boeing", 100);

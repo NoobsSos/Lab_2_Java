@@ -98,12 +98,16 @@ public class Flight {
         if (this.plane.tickets.size() < this.plane.getNumberOfPassengers()) {
             this.plane.tickets.add(ticket);
         } else {
-            System.out.println("No free seats");
+            System.out.println("No free seats, ask for another flight or refund");
         }
     }
 
     public void cancelTicket(UUID passengerId) {
-        this.plane.tickets.removeIf(p -> p.getPassengerId() == passengerId);
+        if (this.plane.tickets.removeIf(p -> p.getPassengerId() == passengerId)) {
+            System.out.println("Ticket was canceled");
+        } else {
+            System.out.println("Ticket not found");
+        }
     }
 
     public void removePlane() {

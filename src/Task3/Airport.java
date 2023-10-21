@@ -4,17 +4,17 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Airport {
-    private String id;
+    private String location;
 
-    public Airport(String id) {
-        this.id = id;
+    public Airport(String location) {
+        this.location = location;
     }
 
     public String getId() {
-        return id;
+        return location;
     }
 
-    public void setId(String id) {
-        this.id = id;
+    public void setId(String location) {
+        this.location = location;
     }
 }

@@ -13,7 +13,5 @@ public class Main {
         for (int item : stack1) {
             System.out.println(item);
         }
-
-
     }
 }
